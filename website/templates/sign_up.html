@@ -1,0 +1,81 @@
+{% extends "auth_page.html" %} 
+
+{% block Form %}
+
+<style>
+    .login{
+    padding-top: 20px;
+}
+</style>
+<h1>Qeydiyyatdan Keç</h1>
+<form method="POST">
+    <div>
+        <input 
+        type="email" 
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Email"
+        />
+    </div>
+
+    <div>
+        <input 
+        type="text" 
+        class="form-control"
+        id="first_name"
+        name="first_name"
+        placeholder="Ad"
+        />
+    </div>
+
+    <div>
+        <input 
+        type="text" 
+        class="form-control"
+        id="last_name"
+        name="last_name"
+        placeholder="Soyad"
+        />
+    </div>
+
+
+    <div>
+        <input 
+        type="password" 
+        class="form-control"
+        id="password1"
+        name="password1"
+        placeholder="Şifrə"
+        />
+    </div>
+    <div>
+        <input 
+        type="password" 
+        class="form-control"
+        id="password2"
+        name="password2"
+        placeholder=" Şifrə Təkrarı"
+        />
+    </div>
+    <div>
+        <select id="organization" name="organization" class="multiple_choice">
+          <option value="1">ASAN Xidmət</option>
+          <option value="2">Daxili İşlər Nazirliyi</option>
+          <option value="3">Dövlət İmtahan Mərkəzi</option>
+        </select>
+    </div>
+    <button type="submit" > Qeydiyyatdan keç</button>
+    {% endblock %}
+
+</form>
+
+
+
+{% block referance %}
+
+<p> Hesabın varsa daxil ola bilərsən</p>
+<a href ="{{url_for('auth.login')}}"><button type = 'button'> Daxil Ol <i class="fas fa-arrow-circle-right"></i></button>
+</a>
+
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "index.html" %} 
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block header %}
+Dashboard
+<script type="text/javascript">
+  function openURL(url) {
+      // Open the URL in a new tab
+      window.open(url, '_blank');
+  }
+
+</script>
+
+<style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+  
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .actions a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+  
+    .actions a i {
+      margin-right: 5px;
+    }
+  
+    .actions a:hover {
+      color: #666;
+    }
+  
+    /* Adjust the alignment of other headers */
+    th:first-child  {
+      text-align: center;
+    }
+  
+    th:not(:first-child), td {
+      text-align: center;
+      white-space: nowrap;
+    }
+  </style>
+  
+  {% endblock %}
+  
+  {% block body %}
+  <table>
+    <thead>
+      <tr>
+        <th>Sıralama</th>
+        <th>Faylın Adı</th>
+        <th>Yaradılma tarixi</th>
+        <th>Status</th>
+        <th class="actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order_id, document in documents %}
+      <tr>
+        <td>{{ order_id }}</td>
+        <td>{{ document.user_defined_name }}</td>
+        <td>{{ document.date }}</td>
+        <td>{{ document.name }}</td>
+        <td class="actions">
+            <a href="{{ url_for( 'views.update_document_archive', document_id = document.id, archive_type = 1) }}"><i class="fas fa-archive"></i> Arxivlə</a>
+            <a href="{{ url_for( 'views.view_document', document_id = document.id) }}" target="_blank"><i class="fas fa-eye"></i> Fayla Bax</a>
+            <a href="{{ url_for( 'views.download_document', document_id = document.id) }}" target="_blank"><i class="fas fa-download"></i> Yüklə</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  {% endblock %}
+  

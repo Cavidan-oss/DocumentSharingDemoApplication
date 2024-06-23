@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Open URL</title>
+</head>
+<body>
+    <form action="{{ target_url }}" method="get" target="_blank" id="redirect-form">
+        <noscript>
+            <p>
+                JavaScript is disabled. Please click the button below to continue:
+            </p>
+            <button type="submit">Open URL</button>
+        </noscript>
+    </form>
+
+    <script>
+        document.getElementById('redirect-form').submit();
+    </script>
+</body>
+</html>

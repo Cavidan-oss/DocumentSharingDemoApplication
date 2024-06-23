@@ -1,0 +1,100 @@
+{% extends "index.html" %} 
+
+{% block title %}
+Dashboard
+{% endblock %}
+
+
+{% block header %}
+Arxivlənmiş Sənədlər
+<script type="text/javascript">
+  function openURL(url) {
+      // Open the URL in a new tab
+      window.open(url, '_blank');
+  }
+
+</script>
+
+<style>
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+  
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+  
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+  
+    .actions {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+  
+    .actions a {
+      color: #333;
+      text-decoration: none;
+      transition: color 0.3s ease;
+      display: flex;
+      align-items: center;
+    }
+  
+    .actions a i {
+      margin-right: 5px;
+    }
+  
+    .actions a:hover {
+      color: #666;
+    }
+  
+    /* Adjust the alignment of other headers */
+    th:first-child  {
+      text-align: center;
+    }
+  
+    th:not(:first-child), td {
+      text-align: center;
+      white-space: nowrap;
+    }
+  </style>
+  
+  {% endblock %}
+  
+  {% block body %}
+  <table>
+    <thead>
+      <tr>
+        <th>Order</th>
+        <th>Başlıq</th>
+        <th>Yaradılma Vaxtı</th>
+        <th>Arxivlənmə Vaxtı</th>
+        <th class="actions">Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for order_id, document in documents %}
+      <tr>
+        <td>{{ order_id }}</td>
+        <td>{{ document.user_defined_name }}</td>
+        <td>{{ document.Created_Date }}</td>
+        <td>{{ document.Archived_Date }}</td>
+        <td class="actions">
+            <a href="{{ url_for( 'views.update_document_archive', document_id = document.document_id, archive_type = 0) }}"><i class="fas fa-archive"></i> Arxivdən Çıxart</a>
+            <a href="{{ url_for( 'views.view_document', document_id = document.document_id) }}" target="_blank"><i class="fas fa-eye"></i> Fayla Bax</a>
+            <a href="{{ url_for( 'views.delete_document', document_id = document.document_id) }}"><i class="fas fa-trash-alt"></i> Yüklə</a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  
+  {% endblock %}
+  

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My Flask Application</title>
+    <!-- Link to Bootstrap CSS file -->
+       <link rel="stylesheet" href="{{ url_for('static', filename='css/auth_style.css') }}">
+       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.0/css/all.min.css">
+        <style>
+#flash-messages {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+ul.flashes {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.flash-message {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.flash-message.error {
+    background-color: #FDDCDC;
+    border: 1px solid #FF0000;
+    color: #FF0000;
+}
+
+.flash-message.success {
+    background-color: #E9FCD3;
+    border: 1px solid #00AA00;
+    color: #00AA00;
+}
+
+.flash-message.warning {
+    background-color: #FFF3CD;
+    border: 1px solid #E6C200;
+    color: #E6C200;
+}
+
+.message-text {
+    flex-grow: 1;
+    margin-right: 10px;
+}
+
+.close-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: #999999;
+    margin-left: 10px;
+}
+                  </style>
+
+        <script>
+
+         // Remove flash message
+        // Remove flash message
+        function removeFlashMessage(element) {
+            element.parentNode.removeChild(element);
+        }
+
+        // Show flash messages
+        var flashMessages = document.getElementsByClassName('flash-message');
+        for (var i = 0; i < flashMessages.length; i++) {
+            flashMessages[i].style.display = 'flex';
+            var closeButton = flashMessages[i].querySelector('.close-button');
+            closeButton.addEventListener('click', function() {
+                removeFlashMessage(this.parentNode.parentNode);
+            });
+        }
+ 
+        </script>
+      <!-- Custom styles -->
+    </head>
+  <body>
+    <div id="flash-messages">
+      {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              <ul class="flashes">
+                  {% for category, message in messages %}
+                      <li class="flash-message {{ category }}">
+                          <div class="message-content">
+                              <span class="message-icon"></span>
+                              <span class="message-text">{{ message }}</span>
+                              <button class="close-button" onclick="this.parentElement.parentElement.remove()">&times;</button>
+                          </div>
+                      </li>
+                  {% endfor %}
+              </ul>
+          {% endif %}
+      {% endwith %}
+    </div>
+
+    <div class="container">
+        <div class="login">
+           <div class="container">
+            <!--
+                <h1>Log in</h1>
+                <input type="email" placeholder="Email">
+                <input type="password" placeholder="Password"><br>
+                <button>Log In</button>
+            -->
+            {% block Form %}  {% endblock %}
+                <div class="clearfix"></div>
+                <span class="copyright">&copy;2023</span>  
+           </div>
+        </div>
+        <div class="register">
+            <div class="container">
+                {% block referance %} Hello {% endblock %}
+               <!--   <i class="fas fa-user-plus fa-5x"></i>
+              <h2>Hello,friend!</h2>
+              <p>Enter your personal details and start journey with us</p>
+              <button>Register <i class="fas fa-arrow-circle-right"></i></button>-->
+            </div>
+        </div>  
+      </div>
+
+  </body>
+</html>
+
+
+

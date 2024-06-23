@@ -1,0 +1,78 @@
+{% extends "index.html" %} 
+
+{% block title %}
+New Document
+{% endblock %}
+
+
+{% block header %}
+Yeni Fayl Əlavə Et
+<style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      color: #333;
+    }
+
+    form {
+      width: 300px;
+      margin: 20px auto;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      font-weight: bold;
+      margin-bottom: 5px;
+    }
+
+    input[type="text"],
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+    }
+
+    button[type="submit"] {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background-color: #45a049;
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+<form  method="post" enctype="multipart/form-data">
+    <div class="form-group">
+      <label for="filename">Faylın Adı:</label>
+      <input type="text" id="filename" name="filename" required>
+    </div>
+    <div class="form-group">
+      <label for="file">Fayl:</label>
+      <input type="file" id="file" name="file" required>
+    </div>
+    <div>
+      <button type="submit">Upload</button>
+    </div>
+  </form>
+{% endblock %}
+
+
+
+
+
+
+

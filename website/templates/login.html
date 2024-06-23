@@ -1,0 +1,33 @@
+{% extends "auth_page.html" %} 
+
+{% block Form %}
+<h1>Daxil Ol</h1>
+<form method="POST">
+    <div >
+        <input
+          type="email"
+          class="form-control"
+          id="email"
+          name="email"
+          placeholder="Email"
+        />
+      </div>
+      <div class="form-group">
+        <input
+          type="password"
+          class="form-control"
+          id="password"
+          name="password"
+          placeholder="Şifrə"
+        />
+      </div>
+      <button type="submit" >Daxil Ol</button>
+</form>
+
+{% endblock %}
+
+
+{% block referance %}
+<p>Hesabın yoxdursa burdan yarada bilərsən!</p>
+<a href ="{{url_for('auth.sign_up')}}"><button type = 'button'>Qeydiyyat<i class="fas fa-arrow-circle-right"></i></button></a>
+{% endblock %}
